@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURA — 마음의 결을 읽다 | AI 감성 분석</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Ambient background glow spots -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <div class="container">
+    <header class="header">
+      <h1 class="logo">AURA</h1>
+      <p class="subtitle">당신의 문장 뒤에 숨겨진 감정의 결을 비춥니다</p>
+    </header>
+
+    <main class="main">
+      <!-- Input Section -->
+      <section class="input-section card">
+        <p class="emotional-quote">"지금 마음속에 맴도는 생각이나 감정을 적어주세요."</p>
+        
+        <div class="textarea-wrapper">
+          <textarea id="text-input" placeholder="이곳에 문장을 입력하세요. 여러 문장도 좋습니다..." maxlength="1000"></textarea>
+          <div class="char-counter"><span id="char-count">0</span> / 1000</div>
+        </div>
+
+        <div class="privacy-warning">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          분석을 위해 개인정보나 민감한 내용은 제외하고 작성해 주시기 바랍니다.
+        </div>
+
+        <button id="analyze-btn" class="glow-btn">
+          <span class="btn-text">감정 분석하기</span>
+          <span class="btn-loader"></span>
+        </button>
+
+        <div id="error-message" class="error-container hidden"></div>
+      </section>
+
+      <!-- Loading State (hidden by default) -->
+      <section id="loading-section" class="loading-container hidden">
+        <div class="pulse-loader">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <p class="loading-text">AI가 문장 속 정서를 세밀하게 탐색하는 중입니다...</p>
+      </section>
+
+      <!-- Result Section (hidden by default) -->
+      <section id="result-section" class="result-section card hidden">
+        <h2 class="result-title">분석 결과</h2>
+        
+        <div class="sentiment-result-display">
+          <div class="sentiment-badge-wrapper">
+            <span id="sentiment-badge" class="sentiment-badge">긍정</span>
+          </div>
+          <div class="confidence-wrapper">
+            <span class="confidence-label">신뢰도</span>
+            <div class="progress-bar-container">
+              <div id="confidence-bar" class="progress-bar" style="width: 0%;"></div>
+            </div>
+            <span id="confidence-value" class="confidence-percent">0%</span>
+          </div>
+        </div>
+
+        <div class="reason-section">
+          <h3>분석된 이유</h3>
+          <p id="analysis-reason" class="reason-text">이 문장은 전반적으로 긍정적인 메시지를 담고 있습니다.</p>
+        </div>
+
+        <button id="reset-btn" class="secondary-btn">다시 입력하기</button>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; 2026 AURA Sentiment AI. Powered by OpenAI.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
